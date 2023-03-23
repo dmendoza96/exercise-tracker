@@ -10,7 +10,7 @@
   <body>
     <div class="container">
       <h1>Exercise tracker</h1>
-      <form action="/api/users" method="post">
+      <form action="/api/users" method="POST">
         <h3>Create a New User</h3>
         <p><code>POST /api/users</code></p>
         <input id="uname" type="text" name="username" placeholder="username" />
@@ -23,7 +23,7 @@
         <input id="desc" type="text" name="description" placeholder="description*" />
         <input id="dur" type="text" name="duration" placeholder="duration* (mins.)" />
         <input id="date" type="text" name="date" placeholder="date (yyyy-mm-dd)" />
-        <input type="submit" value="Submit" />
+        <button type="submit">Submit</button>
       </form>
       <p>
         <strong>GET user's exercise log: </strong>
@@ -34,6 +34,7 @@
     </div>
     <script>
       const exerciseForm = document.getElementById("exercise-form");
+      
 
       exerciseForm.addEventListener("submit", () => {
         const userId = document.getElementById("uid").value;
