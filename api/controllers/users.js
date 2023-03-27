@@ -74,10 +74,11 @@ const postUserExercise = async(req, res) => {
         })
     }
 
-    if(duration.length < 1){
+
+    if(duration.length < 1 || isNaN(duration)){
         errors.push({
             field: 'duration',
-            message: 'Please enter a valid duration'
+            message:" Please enter a valid duration. Duration can't be empty and should be a number "
         })
     }
 
@@ -127,9 +128,11 @@ const getUserLogs = async(req, res) => {
                 usernameId: req.params.userId,
                 ...((from && to) && {
                     date: {
-                        [Op.between]:  [from , to]
+                        [Op.gte]: new Date(from),
+                        [Op.lte]: new Date(to),
                     }})
             },
+            order: [['date', 'ASC']],
             limit: limit || null
         })
 
